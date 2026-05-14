@@ -106,18 +106,29 @@ doc-risk-analyzer/
 
 ---
 
-# 📸 Application Screenshots
+## 📸 Application Screenshots
 
 ## 🏠 Home Page
 
-![Home Page](screenshots/homepage.png)
+![Home Page](screenshots/dashboard1.png)
 
 ---
 
-## 📊 Dashboard & Analysis
+## 📊 Dashboard Overview
 
-![Dashboard](screenshots/dashboard.png)
+![Dashboard Overview](screenshots/dashboard2.png)
 
+---
+
+## ⚠️ AI Risk Analysis
+
+![AI Risk Analysis](screenshots/dashboard3.png)
+
+---
+
+## 🤖 Document Q&A Assistant
+
+![Document Q&A](screenshots/dashboard4.png)
 ---
 
 # ⚙️ Installation Guide
