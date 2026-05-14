@@ -1,9 +1,10 @@
-# 📄 AI Document Risk Analyzer
+# 📄 AI Document Intelligence Assistant
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.13-blue?style=for-the-badge&logo=python">
   <img src="https://img.shields.io/badge/Streamlit-Web_App-red?style=for-the-badge&logo=streamlit">
-  <img src="https://img.shields.io/badge/NLP-AI_Powered-green?style=for-the-badge">
+  <img src="https://img.shields.io/badge/RAG-AI_Powered-purple?style=for-the-badge">
+  <img src="https://img.shields.io/badge/LLM-Ollama_Llama3-green?style=for-the-badge">
   <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge">
 </p>
 
@@ -11,50 +12,52 @@
 
 # 🚀 Overview
 
-AI Document Risk Analyzer is an AI-powered web application that intelligently analyzes uploaded PDF documents, extracts meaningful information, detects potential risks, and generates automated summaries using Natural Language Processing (NLP).
+AI Document Intelligence Assistant is an AI-powered web application that enables intelligent document understanding using Retrieval-Augmented Generation (RAG), Large Language Models (LLMs), and NLP.
 
-The application is designed to simplify document understanding by automating:
-- Text Extraction
-- Risk Detection
-- Information Analysis
-- AI-based Summarization
+Users can upload PDF documents, analyze risks, generate summaries, and ask contextual questions directly from document content.
 
 This project demonstrates practical implementation of:
+
 - Artificial Intelligence
-- NLP Pipelines
+- Natural Language Processing (NLP)
+- Retrieval-Augmented Generation (RAG)
+- Large Language Models (LLMs)
+- Semantic Search
+- Vector Databases
 - Streamlit Dashboard Development
-- Document Processing Systems
-- Risk Analysis Workflows
+- Document Intelligence Systems
 
 ---
 
 # ✨ Features
 
 ✅ Upload and analyze PDF documents  
-✅ Automatic text extraction from files  
-✅ AI-powered risk detection  
-✅ Intelligent summary generation  
+✅ Automatic text extraction  
+✅ AI-powered document summarization  
+✅ Intelligent risk analysis  
+✅ Context-aware document question answering  
+✅ Retrieval-Augmented Generation (RAG)  
+✅ Vector similarity search using ChromaDB  
+✅ Local LLM inference using Ollama + Llama 3  
 ✅ Interactive dashboard UI  
-✅ Real-time document processing  
 ✅ Risk score visualization  
 ✅ Download generated summary  
 ✅ Dark professional UI theme  
-✅ Metrics dashboard for analysis  
 
 ---
 
 # 🛠️ Tech Stack
 
 | Technology | Purpose |
-|---|---|
+|----------|---------|
 | Python | Core Programming |
 | Streamlit | Frontend Dashboard |
-| NLP | Text Processing |
+| LangChain | AI Orchestration |
+| ChromaDB | Vector Database |
+| Ollama | Local LLM Runtime |
+| Llama 3 | Large Language Model |
+| NLP | Text Understanding |
 | PyPDF2 | PDF Text Extraction |
-| Scikit-learn | ML Utilities |
-| Pandas | Data Handling |
-| Matplotlib | Visualization |
-| Seaborn | Analytics |
 
 ---
 
@@ -65,15 +68,19 @@ User Uploads PDF
         ↓
 Text Extraction
         ↓
-NLP Preprocessing
+Document Chunking
         ↓
-Field Extraction
+Vector Embedding Generation
         ↓
-Risk Detection
+Chroma Vector Database
         ↓
-Summary Generation
+Semantic Retrieval
         ↓
-Dashboard Visualization
+Llama 3 Reasoning
+        ↓
+Risk Analysis / Q&A / Summarization
+        ↓
+Interactive Dashboard
 ```
 
 ---
@@ -85,6 +92,7 @@ doc-risk-analyzer/
 │
 ├── app.py
 ├── utils.py
+├── rag_utils.py
 ├── requirements.txt
 ├── README.md
 ├── screenshots/
@@ -146,7 +154,7 @@ code .
 python -m venv venv
 ```
 
-Activate virtual environment:
+Activate:
 
 ```bash
 .\venv\Scripts\activate
@@ -168,21 +176,29 @@ source venv/bin/activate
 
 ---
 
-## 5️⃣ Install Required Dependencies
+## 5️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-If requirements.txt gives any issue:
+---
+
+## 6️⃣ Install Ollama
+
+Download:
+
+https://ollama.com/download
+
+Install the LLM model:
 
 ```bash
-pip install streamlit pandas scikit-learn matplotlib seaborn PyPDF2
+ollama pull llama3
 ```
 
 ---
 
-## 6️⃣ Run the Application
+## 7️⃣ Run Application
 
 ```bash
 streamlit run app.py
@@ -190,9 +206,7 @@ streamlit run app.py
 
 ---
 
-## 7️⃣ Open in Browser
-
-After running the command, Streamlit automatically opens:
+## 8️⃣ Open Browser
 
 ```text
 http://localhost:8501
@@ -200,88 +214,97 @@ http://localhost:8501
 
 ---
 
-# 🧠 NLP Features Used
+# 🧠 NLP + AI Features Used
 
-- Text Extraction
-- Text Cleaning
-- Keyword Detection
-- Field Extraction
-- Risk Classification
-- Summary Generation
+This project uses advanced NLP techniques including:
+
+- PDF text extraction
+- Document parsing
+- Semantic chunking
+- Context-aware retrieval
+- Embedding generation
+- Similarity search
+- LLM-based reasoning
+- AI summarization
+- Question answering
+- Risk analysis
 
 ---
 
-# ⚠️ Risk Detection
+# ⚠️ Risk Analysis Capabilities
 
-The system identifies potential:
+The assistant identifies potential:
+
 - Financial Risks
 - Legal Risks
-- Sensitive Keywords
-- Suspicious Information
-- Document-based anomalies
+- Compliance Risks
+- Privacy Concerns
+- Contractual Issues
 
-Risk levels are categorized as:
-- Low
-- Medium
-- High
+Risk insights include mitigation recommendations.
+
+---
+
+# 🤖 Sample Questions
+
+Try asking:
+
+- Summarize this document
+- What are the key obligations?
+- Are there any financial risks?
+- What compliance concerns exist?
+- Are there privacy issues?
+- Suggest mitigation strategies
+- What important clauses are present?
 
 ---
 
 # 📊 Dashboard Features
 
-The application dashboard provides:
+Dashboard provides:
+
 - Extracted text metrics
 - Risk score visualization
 - AI-generated summaries
-- Field extraction results
-- Tab-based navigation
+- Structured field extraction
+- AI-powered risk analysis
+- Interactive Q&A tab
 - Downloadable summaries
-
----
-
-# 📥 Download Summary Feature
-
-Users can download the generated summary directly from the dashboard using the built-in download functionality.
+- Tab-based document exploration
 
 ---
 
 # 🔮 Future Enhancements
 
-- OpenAI API Integration
+- DOCX support
 - OCR for scanned PDFs
-- Multi-language support
+- Multi-document querying
 - Cloud deployment
-- User authentication
-- Advanced AI risk models
-- Interactive charts and analytics
-- PDF report export
+- Authentication system
+- Multi-agent workflows
+- AI report export
+- Role-based access control
 
 ---
 
 # 🛠️ Common Errors & Solutions
 
-## ❌ streamlit not recognized
+## ❌ Ollama not recognized
+
+Restart terminal / VS Code after installation.
+
+Or run:
+
+```bash
+"C:\Program Files\Ollama\ollama.exe" run llama3
+```
+
+---
+
+## ❌ Streamlit not recognized
 
 ```bash
 pip install streamlit
-```
-
----
-
-## ❌ Python not recognized
-
-Reinstall Python and enable:
-
-```text
-Add Python to PATH
-```
-
----
-
-## ❌ requirements.txt issue
-
-```bash
-pip install streamlit pandas scikit-learn matplotlib seaborn PyPDF2
 ```
 
 ---
@@ -296,25 +319,9 @@ streamlit run app.py --server.port 8502
 
 # 🧾 Git Commands
 
-## Add Files
-
 ```bash
 git add .
-```
-
----
-
-## Commit Changes
-
-```bash
-git commit -m "Updated project"
-```
-
----
-
-## Push to GitHub
-
-```bash
+git commit -m "Upgraded project to RAG-based AI document assistant"
 git push origin main
 ```
 
@@ -323,13 +330,16 @@ git push origin main
 # 📚 Learning Outcomes
 
 Through this project, I learned:
-- AI-powered document analysis
-- NLP pipeline implementation
-- Streamlit dashboard design
-- PDF text extraction
-- Risk detection systems
-- Real-world AI application workflows
-- Git & GitHub project management
+
+- RAG architecture
+- LangChain workflows
+- Local LLM integration
+- Vector databases
+- Semantic retrieval
+- AI document intelligence
+- NLP applications
+- Streamlit dashboard engineering
+- Git/GitHub collaboration
 
 ---
 
@@ -338,7 +348,7 @@ Through this project, I learned:
 ## Prachi Shah
 
 B.Tech Computer Science Engineering  
-MIT-WPU Pune  
+MIT-WPU Pune
 
 GitHub:  
 https://github.com/prachi-shah07
@@ -347,13 +357,15 @@ https://github.com/prachi-shah07
 
 # 📄 License
 
-This project is developed for:
+Developed for:
+
 - Educational purposes
-- Portfolio projects
+- Portfolio showcase
 - AI/NLP learning
+- Generative AI experimentation
 
 ---
 
 # ⭐ Conclusion
 
-AI Document Risk Analyzer combines Artificial Intelligence and Natural Language Processing to simplify document understanding and automated risk analysis. The platform provides an interactive and professional dashboard capable of extracting information, detecting risks, and generating intelligent summaries from uploaded documents in real time.
+AI Document Intelligence Assistant combines NLP, RAG, vector search, and local LLM reasoning to transform traditional document analysis into an interactive AI-powered experience.

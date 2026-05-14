@@ -1,10 +1,11 @@
 import streamlit as st
 from utils import extract_text, extract_fields, detect_risk, generate_summary
+from rag_utils import create_vector_store, ask_document_question, analyze_document_risks
 
 # ---------------- PAGE CONFIG ---------------- #
 
 st.set_page_config(
-    page_title="AI Document Risk Analyzer",
+    page_title="AI Document Intelligence Assistant",
     page_icon="📄",
     layout="wide"
 )
@@ -65,10 +66,10 @@ with st.sidebar:
 
     st.write("""
     AI-powered platform for:
-    - Document Analysis
-    - Risk Detection
-    - Text Summarization
-    - NLP Processing
+    - Document Intelligence
+    - AI Risk Analysis
+    - Document Question Answering
+    - RAG-based Retrieval
     """)
 
     st.markdown("---")
@@ -82,17 +83,18 @@ with st.sidebar:
     st.write("""
     - Python
     - Streamlit
+    - LangChain
+    - ChromaDB
+    - Ollama (Llama 3)
     - NLP
-    - PyPDF2
-    - Scikit-learn
     """)
 
 # ---------------- HERO SECTION ---------------- #
 
-st.title("📄 AI Document Risk Analyzer")
+st.title("📄 AI Document Intelligence Assistant")
 
 st.subheader(
-    "AI-powered platform for intelligent document analysis, risk detection, and automated summarization."
+    "AI-powered document intelligence assistant with RAG-based question answering, risk analysis, and summarization."
 )
 
 # ---------------- FEATURE CARDS ---------------- #
@@ -100,13 +102,13 @@ st.subheader(
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.info("📄 Document Extraction")
+    st.info("📄 Document Intelligence")
 
 with col2:
-    st.warning("⚠️ Risk Detection")
+    st.warning("⚠️ AI Risk Analysis")
 
 with col3:
-    st.success("🧠 AI Summarization")
+    st.success("🤖 Document Q&A")
 
 st.markdown("---")
 
@@ -134,6 +136,8 @@ if uploaded_file:
         risk_level, reasons = detect_risk(text, fields)
 
         summary = generate_summary(text)
+
+        vector_store = create_vector_store(text)
 
     st.success("✅ Document Processed Successfully")
 
@@ -169,10 +173,11 @@ if uploaded_file:
 
     # ---------------- TABS ---------------- #
 
-    tab1, tab2, tab3 = st.tabs([
+    tab1, tab2, tab3, tab4 = st.tabs([
         "📜 Extracted Text",
         "⚠️ Risk Analysis",
-        "🧠 Summary"
+        "🧠 Summary",
+        "🤖 Ask Your Document"
     ])
 
     # ---------------- TAB 1 ---------------- #
@@ -201,13 +206,18 @@ if uploaded_file:
         st.markdown('<div class="card">', unsafe_allow_html=True)
 
         st.subheader("📊 Extracted Information")
-
         st.json(fields)
 
-        st.subheader("⚠️ Risk Reasons")
+        st.subheader("⚠️ Rule-Based Risk Reasons")
 
         for reason in reasons:
             st.write(f"• {reason}")
+
+        st.subheader("🤖 AI Risk Recommendations")
+
+        ai_risks = analyze_document_risks(vector_store)
+
+        st.write(ai_risks)
 
         st.markdown('</div>', unsafe_allow_html=True)
 
@@ -228,13 +238,36 @@ if uploaded_file:
             mime="text/plain"
         )
 
+    # ---------------- TAB 4 ---------------- #
+
+    with tab4:
+
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+
+        st.subheader("Ask Questions About Your Document")
+
+        question = st.text_input(
+            "Ask anything from the uploaded document"
+        )
+
+        if question:
+            with st.spinner("🤖 Thinking..."):
+                answer = ask_document_question(
+                    vector_store,
+                    question
+                )
+
+                st.write(answer)
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
 # ---------------- FOOTER ---------------- #
 
 st.markdown("""
 <hr>
 <center>
     <p style='color:gray'>
-        Developed by Prachi Shah • AI + NLP Project • Streamlit
+        Developed by Prachi Shah • RAG + LangChain + Ollama AI Project
     </p>
 </center>
 """, unsafe_allow_html=True)
